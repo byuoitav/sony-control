@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/byuoitav/av-api/status"
+	"github.com/byuoitav/av-api/statusevaluators"
 )
 
 type SonyBaseResult struct {
@@ -12,9 +12,9 @@ type SonyBaseResult struct {
 	Result map[string]string `json:"result"`
 }
 
-func GetBlankedStatus(address string) (status.BlankedStatus, error) {
+func GetBlankedStatus(address string) (statusevaluators.BlankedStatus, error) {
 
-	var blanked status.BlankedStatus
+	var blanked statusevaluators.BlankedStatus
 
 	payload := SonyTVRequest{
 		Params:  []map[string]interface{}{},

@@ -4,18 +4,18 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/byuoitav/av-api/status"
+	"github.com/byuoitav/av-api/statusevaluators"
 )
 
-func GetVolume(address string) (status.Volume, error) {
+func GetVolume(address string) (statusevaluators.Volume, error) {
 	log.Printf("Getting volume for %v", address)
 	parentResponse, err := getAudioInformation(address)
 	if err != nil {
-		return status.Volume{}, err
+		return statusevaluators.Volume{}, err
 	}
 	log.Printf("%v", parentResponse)
 
-	var output status.Volume
+	var output statusevaluators.Volume
 	for _, outerResult := range parentResponse.Result {
 
 		for _, result := range outerResult {
@@ -52,13 +52,13 @@ func getAudioInformation(address string) (SonyAudioResponse, error) {
 
 }
 
-func GetMute(address string) (status.MuteStatus, error) {
-	log.Printf("Getting mute status for %v", address)
+func GetMute(address string) (statusevaluators.MuteStatus, error) {
+	log.Printf("Getting mute statusevaluators for %v", address)
 	parentResponse, err := getAudioInformation(address)
 	if err != nil {
-		return status.MuteStatus{}, err
+		return statusevaluators.MuteStatus{}, err
 	}
-	var output status.MuteStatus
+	var output statusevaluators.MuteStatus
 	for _, outerResult := range parentResponse.Result {
 		for _, result := range outerResult {
 			if result.Target == "speaker" {
