@@ -6,11 +6,12 @@ import (
 	"log"
 	"regexp"
 
-	"github.com/byuoitav/av-api/statusevaluators"
+
+	se "github.com/byuoitav/av-api/statusevaluators"
 )
 
-func GetInput(address string) (statusevaluators.Input, error) {
-	var output statusevaluators.Input
+func GetInput(address string) (se.Input, error) {
+	var output se.Input
 
 	pwrState, err := GetPower(address)
 	if err != nil {
