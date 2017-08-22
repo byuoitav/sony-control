@@ -10,7 +10,7 @@ import (
 
 func SetPower(address string, status bool) error {
 	params := make(map[string]interface{})
-	params["status"] = status
+	params["statusevaluators"] = status
 
 	err := BuildAndSendPayload(address, "system", "setPowerStatus", params)
 	if err != nil {
@@ -25,6 +25,7 @@ func GetPower(address string) (se.PowerStatus, error) {
 
 	var output se.PowerStatus
 
+
 	payload := SonyTVRequest{
 		Params:  []map[string]interface{}{},
 		Method:  "getPowerStatus",
@@ -34,6 +35,7 @@ func GetPower(address string) (se.PowerStatus, error) {
 
 	response, err := PostHTTP(address, payload, "system")
 	if err != nil {
+
 		return se.PowerStatus{}, err
 	}
 
